@@ -1,6 +1,7 @@
+'use client'
 import { client } from "@/app/lib/sanity";
 import BikeCategories from "@/components/BikeCategories";
-
+import { useEffect } from "react";
 const getData = async () => {
   const query = `*[_type == 'product' ] {
     _id,
@@ -18,6 +19,9 @@ const getData = async () => {
 };
 
 const OurBikes = async () => {
+  useEffect(() => {
+    document.title = "Our Figures";
+  }, []);
   const bikes = await getData();
   return (
     <div>

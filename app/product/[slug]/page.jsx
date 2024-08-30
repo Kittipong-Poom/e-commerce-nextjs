@@ -1,33 +1,54 @@
+'use client'
+
 import { client, urlFor } from "@/app/lib/sanity";
 import Image from "next/image";
 import AddToCartBtn from "@/components/AddToCartBtn";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
 import {
-  Bike,
+  BaggageClaim,
   Clock,
   PackageCheck,
   RefreshCw,
   ChevronLeft,
 } from "lucide-react";
 
+// Fetch product data based on slug
 const getData = async (slug) => {
   const query = `*[_type == 'product' && slug.current == '${slug}'][0] {
     _id,
     images,
     price,
-    price_id ,
+    price_id,
     name,
     description,
     "slug": slug.current,
     "category": categories->{name}
-    }`;
+  }`;
   const data = await client.fetch(query);
   return data;
 };
 
-const ProductDetails = async ({ params }) => {
-  const bike = await getData(params.slug);
+const ProductDetails = ({ params }) => {
+  const [bike, setBike] = useState(null);
+
+  useEffect(() => {
+    // Fetch data and update the document title
+    const fetchData = async () => {
+      const data = await getData(params.slug);
+      setBike(data);
+      if (data?.name) {
+        document.title = data.name; // Set document title to the product name
+      }
+    };
+
+    fetchData();
+  }, [params.slug]);
+
+  if (!bike) {
+    return <div>Loading...</div>; // Show a loading state while data is being fetched
+  }
+
   return (
     <section className="pt-24 pb-32">
       <div className="container mx-auto">
@@ -42,17 +63,17 @@ const ProductDetails = async ({ params }) => {
               width={473}
               height={290}
               priority
-              alt=""
+              alt={bike.name} // Set alt text to the product name
             />
           </div>
           {/* text */}
           <div
-            className=" flex-1 flex flex-col 
+            className="flex-1 flex flex-col 
           justify-center items-start gap-10"
           >
-            <Link href="/" className="flex items-center gap-2 font-semibold">
+            <Link href="/our-figures" className="flex items-center gap-2 font-semibold">
               <ChevronLeft size={20} />
-              Back to home
+              Back to Our Figures
             </Link>
             <div className="flex flex-col gap-6 items-start">
               <div>
@@ -72,7 +93,7 @@ const ProductDetails = async ({ params }) => {
               />
             </div>
             {/* info */}
-            <div className=" flex flex-col gap-3">
+            <div className="flex flex-col gap-3">
               <div className="flex gap-2">
                 <PackageCheck size={20} className="text-accent" />
                 <p>Free shipping on orders over $130</p>
@@ -82,10 +103,9 @@ const ProductDetails = async ({ params }) => {
                 <p>Free return for 30 days</p>
               </div>
               <div className="flex gap-2">
-                <Bike size={20} className="text-accent" />
+              <BaggageClaim  size={20} className="text-accent" />
                 <p>
-                  The bicycles are partially assembled and benefit from
-                  transport insurance
+                Figures are part of the spiritual value.
                 </p>
               </div>
               <div className="flex gap-2">

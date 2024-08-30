@@ -30,7 +30,7 @@ const PopularBikes = async () => {
           The World's Premium Brands In one Destination
         </p>
         <PopularBikeCarousel bikes={bikes} />
-        <Link href="/our-bikes">
+        <Link href="/our-figures">
           <button className="btn btn-accent mx-auto">See all bikes</button>
         </Link>
       </div>

@@ -8,7 +8,7 @@ import Bike from "./Bike";
 const BikeCategories = ({ bikes }) => {
   const [category, setCategory] = useState("all");
   const [filteredBikes, setFilteredBikes] = useState([]);
-  const [price, setPrice] = useState(900);
+  const [price, setPrice] = useState(150);
 
   useEffect(() => {
     const filtered = bikes.filter((bike) => {
@@ -19,6 +19,7 @@ const BikeCategories = ({ bikes }) => {
       const priceMatch = bike.price <= price;
       return categoryMatch && priceMatch;
     });
+   
     setFilteredBikes(filtered);
   }, [category, price, bikes]);
 
@@ -42,27 +43,27 @@ const BikeCategories = ({ bikes }) => {
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem
-                  value="road"
-                  id="road"
-                  onClick={() => setCategory("road")}
+                  value="anime"
+                  id="anime"
+                  onClick={() => setCategory("anime")}
                 />
-                <label htmlFor="road">Road</label>
+                <label htmlFor="road">Anime</label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem
-                  value="professional"
-                  id="professional"
-                  onClick={() => setCategory("professional")}
+                  value="rapper"
+                  id="rapper"
+                  onClick={() => setCategory("rapper")}
                 />
-                <label htmlFor="professional">Professional</label>
+                <label htmlFor="rapper">Rapper</label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem
-                  value="extreme"
-                  id="extreme"
-                  onClick={() => setCategory("extreme")}
+                  value="marvel comic"
+                  id="marvel comic"
+                  onClick={() => setCategory("marvel comic")}
                 />
-                <label htmlFor="extreme">Extreme</label>
+                <label htmlFor="marvel comic">Marvel comic</label>
               </div>
             </RadioGroup>
             {/* price slider */}
@@ -79,8 +80,8 @@ const BikeCategories = ({ bikes }) => {
                 </span>
               </div>
               <Slider
-                defaultValue={[900]}
-                max={1000}
+                defaultValue={[150]}
+                max={150}
                 step={1}
                 onValueChange={(val) => setPrice(val[0])}
               />
