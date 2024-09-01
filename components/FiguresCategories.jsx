@@ -3,25 +3,25 @@ import { useState, useEffect } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "./ui/label";
 import { Slider } from "./ui/slider";
-import Bike from "./Bike";
+import Figure from "./Figure";
 
-const BikeCategories = ({ bikes }) => {
+const FiguresCategories = ({ figures }) => {
   const [category, setCategory] = useState("all");
-  const [filteredBikes, setFilteredBikes] = useState([]);
+  const [filteredfigs, setFilteredFigs] = useState([]);
   const [price, setPrice] = useState(150);
 
   useEffect(() => {
-    const filtered = bikes.filter((bike) => {
+    const filtered = figures.filter((figure) => {
       const categoryMatch =
         category === "all"
           ? true
-          : bike.categories && bike.categories.some((categ) => categ.name === category);
-      const priceMatch = bike.price <= price;
+          : figure.categories && figure.categories.some((categ) => categ.name === category);
+      const priceMatch = figure.price <= price;
       return categoryMatch && priceMatch;
     });
    
-    setFilteredBikes(filtered);
-  }, [category, price, bikes]);
+    setFilteredFigs(filtered);
+  }, [category, price, figures]);
 
   return (
     <section className="min-h-[1200px] py-10">
@@ -72,11 +72,11 @@ const BikeCategories = ({ bikes }) => {
                 Max Price:{" "}
                 <span className="text-accent font-semibold ml-2">${price}</span>
                 <span className="ml-2">
-                  ({filteredBikes.length > 1
-                    ? `${filteredBikes.length} items`
-                    : filteredBikes.length === 0
-                    ? `${filteredBikes.length} items`
-                    : `${filteredBikes.length} item`})
+                  ({filteredfigs.length > 1
+                    ? `${filteredfigs.length} items`
+                    : filteredfigs.length === 0
+                    ? `${filteredfigs.length} items`
+                    : `${filteredfigs.length} item`})
                 </span>
               </div>
               <Slider
@@ -87,11 +87,11 @@ const BikeCategories = ({ bikes }) => {
               />
             </div>
           </aside>
-          {/* bike list */}
+          {/* figure list */}
           <div className=" w-full xl:w-[1050px] ml-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[30px]">
-              {filteredBikes.map((bike) => {
-                return <Bike bike={bike} key={bike.price_id} />;
+              {filteredfigs.map((figure) => {
+                return <Figure figure={figure} key={figure.price_id} />;
               })}
             </div>
           </div>
@@ -101,4 +101,4 @@ const BikeCategories = ({ bikes }) => {
   );
 };
 
-export default BikeCategories;
+export default FiguresCategories;

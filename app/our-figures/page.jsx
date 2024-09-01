@@ -1,6 +1,6 @@
 'use client'
 import { client } from "@/app/lib/sanity";
-import BikeCategories from "@/components/BikeCategories";
+import FiguresCategories from "@/components/FiguresCategories";
 import { useEffect } from "react";
 const getData = async () => {
   const query = `*[_type == 'product' ] {
@@ -18,16 +18,16 @@ const getData = async () => {
   return data;
 };
 
-const OurBikes = async () => {
+const OurFigures = async () => {
   useEffect(() => {
     document.title = "Our Figures";
   }, []);
-  const bikes = await getData();
+  const figures = await getData();
   return (
     <div>
-      <BikeCategories bikes={bikes} />
+      <FiguresCategories figures={figures} />
     </div>
   );
 };
 
-export default OurBikes;
+export default OurFigures;

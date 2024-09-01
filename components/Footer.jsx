@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { Input } from "./ui/input";
+
 import {
   RiYoutubeFill,
   RiFacebookFill,
   RiInstagramFill,
   RiGithubFill,
-  RiTwitterFill,
 } from "react-icons/ri";
 const Footer = () => {
   return (

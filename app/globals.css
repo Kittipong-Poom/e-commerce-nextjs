@@ -50,7 +50,7 @@
 }
 
 /* swiper styles */
-.popular-bike-slider .swiper-wrapper {
+.popular-figure-slider .swiper-wrapper {
   @apply !h-[500px];
 }
 

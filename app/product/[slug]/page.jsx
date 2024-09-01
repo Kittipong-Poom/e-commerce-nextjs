@@ -30,13 +30,13 @@ const getData = async (slug) => {
 };
 
 const ProductDetails = ({ params }) => {
-  const [bike, setBike] = useState(null);
+  const [figure, setFigure] = useState(null);
 
   useEffect(() => {
     // Fetch data and update the document title
     const fetchData = async () => {
       const data = await getData(params.slug);
-      setBike(data);
+      setFigure(data);
       if (data?.name) {
         document.title = data.name; // Set document title to the product name
       }
@@ -45,7 +45,7 @@ const ProductDetails = ({ params }) => {
     fetchData();
   }, [params.slug]);
 
-  if (!bike) {
+  if (!figure) {
     return <div>Loading...</div>; // Show a loading state while data is being fetched
   }
 
@@ -59,11 +59,11 @@ const ProductDetails = ({ params }) => {
           flex justify-center items-center"
           >
             <Image
-              src={urlFor(bike.images[0]).url()}
+              src={urlFor(figure.images[0]).url()}
               width={473}
               height={290}
               priority
-              alt={bike.name} // Set alt text to the product name
+              alt={figure.name} // Set alt text to the product name
             />
           </div>
           {/* text */}
@@ -77,17 +77,17 @@ const ProductDetails = ({ params }) => {
             </Link>
             <div className="flex flex-col gap-6 items-start">
               <div>
-                <h3>{bike.name}</h3>
-                <p className="text-lg font-semibold">${bike.price}</p>
+                <h3>{figure.name}</h3>
+                <p className="text-lg font-semibold">${figure.price}</p>
               </div>
-              <p>{bike.description}</p>
+              <p>{figure.description}</p>
               <AddToCartBtn
-                price_id={bike.price_id}
-                name={bike.name}
+                price_id={figure.price_id}
+                name={figure.name}
                 currency="USD"
-                description={bike.description}
-                images={bike.images}
-                price={bike.price}
+                description={figure.description}
+                images={figure.images}
+                price={figure.price}
                 text="Add to cart"
                 btnStyles="btn btn-accent"
               />

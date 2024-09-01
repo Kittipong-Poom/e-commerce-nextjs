@@ -6,9 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { CgEye, CgShoppingBag } from "react-icons/cg";
 
-const Bike = ({ bike }) => {
-  const popularBikeCat = bike.categories.find(
-    (bike) => bike.name === "popular"
+const Figure = ({ figure }) => {
+  const popularfigCat = figure.categories.find(
+    (figure) => figure.name === "popular"
   );
 
   return (
@@ -20,7 +20,7 @@ const Bike = ({ bike }) => {
          flex justify-center items-center"
         >
           {/* badge */}
-          {popularBikeCat && (
+          {popularfigCat && (
             <div
               className="absolute top-8 left-8 bg-accent
           text-white px-3 text-sm uppercase font-medium"
@@ -30,7 +30,7 @@ const Bike = ({ bike }) => {
           )}
           {/* รูปภาพ */}
           <Image
-            src={urlFor(bike.images[0]).url()}
+            src={urlFor(figure.images[0]).url()}
             width={240}
             height={147}
             alt=""
@@ -43,16 +43,16 @@ const Bike = ({ bike }) => {
         duration-300"
         >
           <AddToCartBtn
-            price_id={bike.price_id}
-            name={bike.name}
+            price_id={figure.price_id}
+            name={figure.name}
             currency="USD"
-            description={bike.description}
-            images={bike.images}
-            price={bike.price}
+            description={figure.description}
+            images={figure.images}
+            price={figure.price}
             btnStyles="btn-icon btn-accent"
             icon={<CgShoppingBag />}
           />
-          <Link href={`/product/${bike.slug}`}>
+          <Link href={`/product/${figure.slug}`}>
             <button className="btn-icon btn-primary">
               <CgEye />
             </button>
@@ -62,12 +62,12 @@ const Bike = ({ bike }) => {
 
       {/* ส่วนของ ชื่อและราคา */}
       <h5 className="text-gray-400 font-semibold mb-2">
-        {bike.categories[0].name} 
+        {figure.categories[0].name} 
       </h5>
-      <h4 className="mb-1">{bike.name}</h4>
-      <div className="text-lg font-bold text-accent">${bike.price}</div>
+      <h4 className="mb-1">{figure.name}</h4>
+      <div className="text-lg font-bold text-accent">${figure.price}</div>
     </div>
   );
 };
 
-export default Bike;
+export default Figure;
