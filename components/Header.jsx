@@ -13,7 +13,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="hover:text-current">
           <h1 className="text-[26px]">
-            <span className=" text-accent">F</span>iguress
+            <span className=" text-accent">F</span>iguress-Poom
           </h1>
         </Link>
         <div className="flex items-center gap-[26px]">
